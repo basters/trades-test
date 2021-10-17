@@ -1,0 +1,33 @@
+<form class="manage-trade-form" [formGroup]="tradeForm" (ngSubmit)="submit()">
+  <mat-form-field>
+    <mat-label>Entry Date</mat-label>
+    <input matInput [matDatepicker]="entryPicker" formControlName="entryDate">
+    <mat-datepicker-toggle matSuffix [for]="entryPicker"></mat-datepicker-toggle>
+    <mat-datepicker #entryPicker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Entry Price</mat-label>
+    <input matInput type="number" formControlName="entryPrice">
+    <span matSuffix>$</span>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Exit Date</mat-label>
+    <input matInput [matDatepicker]="exitPicker" formControlName="exitDate">
+    <mat-datepicker-toggle matSuffix [for]="exitPicker"></mat-datepicker-toggle>
+    <mat-datepicker #exitPicker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Exit Price</mat-label>
+    <input matInput type="number" formControlName="exitPrice">
+    <span matSuffix>$</span>
+  </mat-form-field>
+
+  <div class="actions">
+    <button type="submit" mat-raised-button color="primary">
+      {{ trade ? 'Save' : 'Add' }}
+    </button>
+  </div>
+</form>

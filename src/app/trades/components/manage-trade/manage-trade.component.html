@@ -1,1 +1,5 @@
-Trades
+<h1>
+  {{ !!(trade$ | async) ? 'Edit Trade' : 'New Trade' }}
+</h1>
+
+<app-trades-manage-trade-form [trade]="trade$ | async"></app-trades-manage-trade-form>

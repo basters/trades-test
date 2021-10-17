@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 @NgModule({
-  imports: [],
+  imports: [
+    MatNativeDateModule,
+  ],
   providers: [],
 })
 export class CoreModule {}
