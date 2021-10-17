@@ -2,8 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppRoutingModule } from './app-routing.module';
+import { MatCardModule } from '@angular/material/card';
+
+import { CoreModule } from './core';
+import { LayoutModule } from './layout';
+
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -13,7 +18,11 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
+    CoreModule,
+    LayoutModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
