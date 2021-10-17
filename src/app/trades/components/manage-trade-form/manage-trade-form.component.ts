@@ -1,4 +1,11 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges
+} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 import { ITrade } from '../../interfaces/trade.interface';
@@ -8,6 +15,7 @@ import { ITrade } from '../../interfaces/trade.interface';
   selector: 'app-trades-manage-trade-form',
   templateUrl: './manage-trade-form.component.html',
   styleUrls: ['./manage-trade-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ManageTradeFormComponent implements OnInit, OnChanges {
 

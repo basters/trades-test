@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { of, iif } from 'rxjs';
@@ -9,6 +9,7 @@ import { TradesService } from '../../services/trades.service';
 
 @Component({
   templateUrl: './manage-trade.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ManageTradeComponent {
 
