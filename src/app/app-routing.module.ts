@@ -5,8 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./main/main.module')
-      .then(m => m.MainModule),
+    loadChildren: () => import('./balance-chart/balance-chart.module')
+      .then(m => m.BalanceChartModule),
   },
   {
     path: 'trades',
