@@ -1,0 +1,17 @@
+<mat-icon [class.positive]="profit! > 0" [class.negative]="profit! < 0">
+  <ng-container *ngIf="profit! > 0">
+    arrow_upward
+  </ng-container>
+
+  <ng-container *ngIf="profit! < 0">
+    arrow_downward
+  </ng-container>
+</mat-icon>
+
+<ng-container *ngIf="profit !== null else notCalculated">
+  {{ profit | currency }}
+</ng-container>
+
+<ng-template #notCalculated>
+  Not Calculated
+</ng-template>

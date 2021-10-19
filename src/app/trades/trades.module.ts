@@ -6,11 +6,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 
 import { TradesRoutingModule } from './trades-routing.module';
 
-import { ManageTradeComponent } from './components/manage-trade';
+import { TradesListComponent } from './components/trades-list';
 import { ManageTradeFormComponent } from './components/manage-trade-form';
+import { NewTradeComponent } from './components/new-trade';
+import { EditTradeComponent } from './components/edit-trade';
+import { TradeProfitComponent } from './components/trade-profit';
 
 
 @NgModule({
@@ -22,12 +27,17 @@ import { ManageTradeFormComponent } from './components/manage-trade-form';
     MatInputModule,
     MatDatepickerModule,
     MatButtonModule,
+    MatTableModule,
+    MatIconModule,
 
     TradesRoutingModule,
   ],
   declarations: [
-    ManageTradeComponent,
+    TradesListComponent,
+    NewTradeComponent,
     ManageTradeFormComponent,
+    EditTradeComponent,
+    TradeProfitComponent,
   ],
   exports: [],
 })

@@ -1,0 +1,11 @@
+.trades-list {
+  width: 100%;
+
+  tr {
+    cursor: pointer;
+
+    &:hover {
+      background: lightblue;
+    }
+  }
+}

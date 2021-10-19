@@ -6,9 +6,12 @@ import {
   OnInit,
   SimpleChanges
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { ITrade } from '../../interfaces/trade.interface';
+import { TradesService } from '../../services/trades.service';
+import { AppValidators } from '../../../common/validators';
 
 
 @Component({
@@ -24,8 +27,27 @@ export class ManageTradeFormComponent implements OnInit, OnChanges {
 
   public tradeForm!: FormGroup;
 
-  constructor() {
+  constructor(
+    private _router: Router,
+    private _tradesService: TradesService,
+  ) {
     this._initForm();
+  }
+
+  public get entryDateControl(): AbstractControl {
+    return this.tradeForm.get('entryDate')!;
+  }
+
+  public get entryPriceControl(): AbstractControl {
+    return this.tradeForm.get('entryPrice')!;
+  }
+
+  public get exitDateControl(): AbstractControl {
+    return this.tradeForm.get('exitDate')!;
+  }
+
+  public get exitPriceControl(): AbstractControl {
+    return this.tradeForm.get('exitPrice')!;
   }
 
   public ngOnInit() {
@@ -38,16 +60,63 @@ export class ManageTradeFormComponent implements OnInit, OnChanges {
   }
 
   public submit(): void {
+    if (!this.tradeForm.valid) {
+      return;
+    }
 
+    const formValue = this.tradeForm.value;
+
+    if (this.trade?.id) {
+      this._tradesService.updateTrade({
+        id: this.trade.id,
+        ...formValue,
+      });
+    } else {
+      this._tradesService.newTrade(formValue);
+    }
+
+    this._router.navigate(['/trades']);
   }
 
   private _initForm(): void {
     this.tradeForm = new FormGroup({
-      entryDate: new FormControl(''),
-      entryPrice: new FormControl(''),
-      exitDate: new FormControl(''),
-      exitPrice: new FormControl(''),
-    })
+      entryDate: new FormControl(
+        '',
+        {
+          validators: [
+            Validators.required,
+            AppValidators.dateLtq('exitDate'),
+          ],
+        },
+      ),
+      entryPrice: new FormControl(
+        '',
+        {
+          validators: [
+            Validators.required,
+            Validators.min(0)
+          ],
+        },
+      ),
+      exitDate: new FormControl(
+        '',
+        {
+          validators: [
+            Validators.required,
+            AppValidators.dateGtq('entryDate'),
+          ],
+        },
+      ),
+      exitPrice: new FormControl(
+        '',
+        {
+          validators: [
+            Validators.required,
+            Validators.min(0)
+          ],
+        },
+      ),
+    });
   }
 
   private _updateFormValuesFromInput(): void {

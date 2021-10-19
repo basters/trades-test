@@ -1,19 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ManageTradeComponent } from './components/manage-trade';
+import { NewTradeComponent } from './components/new-trade';
+import { TradesListComponent } from './components/trades-list';
+import { EditTradeComponent } from './components/edit-trade';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'new',
+    component: TradesListComponent,
   },
   {
     path: 'new',
-    component: ManageTradeComponent,
+    component: NewTradeComponent,
   },
   {
     path: ':id',
-    component: ManageTradeComponent,
+    component: EditTradeComponent,
   },
 ];
 

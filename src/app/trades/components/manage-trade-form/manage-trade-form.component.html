@@ -4,12 +4,28 @@
     <input matInput [matDatepicker]="entryPicker" formControlName="entryDate">
     <mat-datepicker-toggle matSuffix [for]="entryPicker"></mat-datepicker-toggle>
     <mat-datepicker #entryPicker></mat-datepicker>
+
+    <mat-error *ngIf="entryDateControl.hasError('required')">
+      This field required
+    </mat-error>
+
+    <mat-error *ngIf="entryDateControl.hasError('dateLtq')">
+      Entry Date should be less than actual Exit Date
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Entry Price</mat-label>
     <input matInput type="number" formControlName="entryPrice">
     <span matSuffix>$</span>
+
+    <mat-error *ngIf="entryPriceControl.hasError('required')">
+      This field required
+    </mat-error>
+
+    <mat-error *ngIf="entryPriceControl.hasError('min')">
+      Price can not be less than 0
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field>
@@ -17,13 +33,37 @@
     <input matInput [matDatepicker]="exitPicker" formControlName="exitDate">
     <mat-datepicker-toggle matSuffix [for]="exitPicker"></mat-datepicker-toggle>
     <mat-datepicker #exitPicker></mat-datepicker>
+
+    <mat-error *ngIf="exitDateControl.hasError('required')">
+      This field required
+    </mat-error>
+
+    <mat-error *ngIf="exitDateControl.hasError('dateGtq')">
+      Entry Date should be greater than actual Entry Date
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Exit Price</mat-label>
     <input matInput type="number" formControlName="exitPrice">
     <span matSuffix>$</span>
+
+    <mat-error *ngIf="exitPriceControl.hasError('required')">
+      This field required
+    </mat-error>
+
+    <mat-error *ngIf="exitPriceControl.hasError('min')">
+      Price can not be less than 0
+    </mat-error>
   </mat-form-field>
+
+  <div class="profit">
+    <strong>Your profit: </strong>
+    <br>
+    <app-trade-profit [entryPrice]="entryPriceControl.value"
+                      [exitPrice]="exitPriceControl.value">
+    </app-trade-profit>
+  </div>
 
   <div class="actions">
     <button type="submit" mat-raised-button color="primary">
